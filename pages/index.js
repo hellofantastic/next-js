@@ -2,7 +2,7 @@ import Head from 'next/head';
 import Image from 'next/image';
 import styles from '../styles/Home.module.css';
 
-export default function Home() {
+export default function Home({ posts}) {
   const jsxPosts = posts.map((post) => {
    
     return <div key={post.id} className={styles.card}><h4>{post.title.rendered}</h4></div>;
