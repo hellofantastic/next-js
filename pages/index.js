@@ -3,6 +3,10 @@ import Image from 'next/image';
 import styles from '../styles/Home.module.css';
 
 export default function Home() {
+  const jsxPosts = posts.map((post) => {
+   
+    return <div key={post.id} className={styles.card}><h4>{post.title.rendered}</h4></div>;
+  });
   return (
     <div className={styles.container}>
       <Head>
@@ -22,6 +26,8 @@ export default function Home() {
         </p>
 
         <div className={styles.grid}>
+           <h2 className="pb-3">Our blog posts</h2>
+            {jsxPosts}
           <a href="https://nextjs.org/docs" className={styles.card}>
             <h2>Documentation &rarr;</h2>
             <p>Find in-depth information about Next.js features and API.</p>
@@ -68,4 +74,21 @@ export default function Home() {
       </footer>
     </div>
   );
+}
+export async function getStaticProps({ params }) {
+  const posts = await getPosts();
+
+  return {
+    props: {
+      posts,
+    },
+    revalidate: 10, // In seconds
+  };
+}
+const BASE_URL = 'https://thegalacticdesignbureau.com/wp-json/wp/v2';
+
+export async function getPosts() {
+  const postsRes = await fetch(BASE_URL + '/posts?_embed');
+  const posts = await postsRes.json();
+  return posts;
 }
