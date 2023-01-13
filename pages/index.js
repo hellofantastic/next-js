@@ -88,7 +88,7 @@ export async function getStaticProps({ params }) {
 const BASE_URL = 'https://thegalacticdesignbureau.com/wp-json/wp/v2';
 
 export async function getPosts() {
-  const postsRes = await fetch(BASE_URL + '/posts?_embed');
+  const postsRes = await fetch(BASE_URL + '/pages?_embed');
   const posts = await postsRes.json();
   return posts;
 }
