@@ -18,7 +18,7 @@ export default function Home({ posts}) {
 
       <main className={styles.main}>
         <h1 className={styles.title}>
-          Wordpress headless/graphql next.js UI test</a>
+          Wordpress headless/graphql next.js UI test
         </h1>
 
         <p className={styles.description}>
